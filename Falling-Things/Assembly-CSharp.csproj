@@ -63,8 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Box\Box.cs" />
-    <Compile Include="Assets\Scripts\Player\Movement2D.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\MapMenu.cs" />
+    <Compile Include="Assets\Scripts\Box\Base.cs" />
+    <Compile Include="Assets\Scripts\Box\Bomb.cs" />
+    <Compile Include="Assets\Scripts\Box\Common.cs" />
+    <Compile Include="Assets\Scripts\Box\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Player\CharacterPlayer.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

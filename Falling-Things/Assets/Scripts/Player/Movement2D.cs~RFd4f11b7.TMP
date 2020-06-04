@@ -1,0 +1,116 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
+public class Movement2D : MonoBehaviour
+{
+	//hp
+	
+	public float jumpForce;
+	private float moveInput;
+
+	Rigidbody2D rb;
+	Vector2 m_PreviousPosition;
+	Vector2 m_CurrentPosition;
+	Vector2 m_NextMovement;
+	public Rigidbody2D Rigidbody2D { get { return rb; } }
+	private bool facingRight = true;
+	public Transform groundCheck;
+	public float checkRadius;
+	public LayerMask whatIsGround;
+	public float speed=5;
+	private int extraJumps;
+	public int extraJumpsValue;
+
+	[SerializeField]
+	private Transform targetToFollow;
+	// ограничение пространства для Player
+	[SerializeField]
+	private float leftLimit;
+	[SerializeField]
+	private float rightLimit;
+	[SerializeField]
+	private float upperLimit;
+	[SerializeField]
+	private float bottomLimit;
+
+	void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+
+	}
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.UpArrow) && IsGround() == true)
+		{
+			rb.velocity = Vector2.up * jumpForce;
+		}
+	}
+	public void Move()
+	{
+		
+		moveInput = Input.GetAxis("Horizontal");
+		
+		
+		rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+		if (facingRight == false && moveInput > 0)
+		{
+			Flip();
+		}
+		else if (facingRight == true && moveInput < 0)
+		{
+			Flip();
+		}
+	}
+	public void Move(Vector2 movement)
+	{
+		m_NextMovement += movement;
+	}
+	void Flip() {
+		facingRight = !facingRight;
+		// Add Rotation instead Scaler
+		Vector3 Scaler = transform.localScale;
+		Scaler.x *= -1;
+		transform.localScale = Scaler;
+	}
+	 
+	bool IsGround() {
+		return Physics2D.OverlapCircleAll(groundCheck.position, checkRadius, whatIsGround).Length==1;
+	}
+	public void Jump()
+	{
+		if (IsGround())
+		{
+			extraJumps = 2;
+		}
+		if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && extraJumps > 0)
+		{
+			rb.velocity = Vector2.up * jumpForce;
+			extraJumps--;
+		}
+		else if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && extraJumps == 0 && IsGround() == true)
+		{
+			rb.velocity = Vector2.up * jumpForce;
+		}
+	}
+	void Limit() {
+		transform.position = new Vector3(
+			Mathf.Clamp(targetToFollow.position.x, leftLimit, rightLimit),
+			Mathf.Clamp(targetToFollow.position.y, bottomLimit, upperLimit),
+			transform.position.z);
+	}
+	
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.magenta;
+		Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine(new Vector2(leftLimit, upperLimit), new Vector2(rightLimit, upperLimit));
+	}
+	
+
+
+}
