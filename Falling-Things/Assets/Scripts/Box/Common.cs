@@ -19,6 +19,7 @@ public class Common : Base
         {
             characterPlayer.TakeDamage(damage);
             Destroy(gameObject);
-        }
+        }        
     }
+    
 }

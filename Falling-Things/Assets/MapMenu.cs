@@ -6,11 +6,11 @@ public class MapMenu : MonoBehaviour
 {
     public void PlayMap(int numMap)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + numMap);
+        SceneManager.LoadScene(numMap);
     }
 
     public void RandomMap()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Random.Range(1,5)); // 4 карты получается 
+        SceneManager.LoadScene(Random.Range(1,5)); // 4 карты получается 
     }
 }
