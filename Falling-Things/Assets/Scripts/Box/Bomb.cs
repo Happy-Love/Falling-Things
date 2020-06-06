@@ -6,19 +6,19 @@ using UnityEngine.Tilemaps;
 public class Bomb : Base
 {
     public GameObject Explosion;
-    
-    public float delay = 2f;
-    float countdown;
-  
-    public float force;
-    public float checkRadiusExplosion;
 
-    public LayerMask whatIsGround;
-    public LayerMask playerMask;
+    [SerializeField] private float delay = 2f;
+    [SerializeField] private float countdown;
+
+    [SerializeField] private float force;
+    [SerializeField] private float checkRadiusExplosion;
+
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask playerMask;
 
 
     void Start()
-    { 
+    {
         countdown = delay;
     }
     void Explode()
@@ -28,6 +28,7 @@ public class Bomb : Base
         {
             Vector2 direction = item.transform.position - transform.position;
             item.GetComponent<Rigidbody2D>().AddForce(direction * force);
+            item.GetComponent<Character>().TakeDamage(Damage);
         }
         GameObject explos = Instantiate(Explosion, transform.position, transform.rotation);
         Destroy(explos, .5f);
@@ -37,10 +38,9 @@ public class Bomb : Base
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        CharacterPlayer characterPlayer = collision.collider.GetComponent<CharacterPlayer>();
+        Character characterPlayer = collision.collider.GetComponent<Character>();
         if (characterPlayer != null)
         {
-            characterPlayer.TakeDamage(damage);
             Explode();
         }
         TilemapCollider2D tilemap = collision.collider.GetComponent<TilemapCollider2D>();

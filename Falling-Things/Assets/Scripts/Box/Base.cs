@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    public float speed;
-    public Vector2 dir;
-    public int damage;
-    private void FixedUpdate()
+    public float Speed;
+    public Vector2 Dir;
+    public int Damage;
+
+    //Fix for any time
+    protected virtual void FixedUpdate()
     {
-        transform.Translate(speed * dir * Time.fixedDeltaTime, Space.World);
+        transform.Translate(Speed * Dir * Time.fixedDeltaTime, Space.World);
     }
 }

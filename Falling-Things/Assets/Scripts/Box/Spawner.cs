@@ -5,11 +5,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Transform SpawnPos;
-    public GameObject[] Boxes;
-    public float TimeSpawn;
-    public float min_x = -3.6f;
-    public float max_x = 3.6f;
+    [SerializeField] private Transform spawnPos;
+    [SerializeField] private GameObject[] boxes;
+    [SerializeField] private float timeSpawn;
+    [SerializeField] private float min_x = -3.6f;
+    [SerializeField] private float max_x = 3.6f;
     
 
     void Start()
@@ -17,16 +17,16 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnCD());
     }
 
-    void Repeat() 
-    {
-        SpawnPos.position=new Vector3(Random.Range(min_x,max_x), SpawnPos.position.y);
-        StartCoroutine(SpawnCD());
-    }
+  
 
     IEnumerator SpawnCD() 
     {
-        yield return new WaitForSeconds(TimeSpawn);
-        Instantiate(Boxes[Random.Range(0,4)], SpawnPos.position, Quaternion.identity);
-        Repeat();
+        while (true)
+        {
+            yield return new WaitForSeconds(timeSpawn);
+            var screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+            spawnPos.position = new Vector3(Random.Range(screenBounds.x*-1, screenBounds.x), spawnPos.position.y);
+            Instantiate(boxes[Random.Range(0, 4)], spawnPos.position, Quaternion.identity);   
+        }
     }
 }

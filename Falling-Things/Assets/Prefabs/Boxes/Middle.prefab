@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7568fdee330757744887b768069e024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  dir: {x: 0, y: -1}
-  damage: 3
+  Speed: 0
+  Dir: {x: 0, y: 0}
+  Damage: 4
   DeleteTime: 10
   whatIsGround:
     serializedVersion: 2

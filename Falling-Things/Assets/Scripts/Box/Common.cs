@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Common : Base
 {
     public float DeleteTime;
-    public LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsGround;
     void Start()
     {
         Destroy(gameObject, DeleteTime);
@@ -14,10 +14,10 @@ public class Common : Base
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CharacterPlayer characterPlayer = collision.GetComponent<CharacterPlayer>();
+        Character characterPlayer = collision.GetComponent<Character>();
         if (characterPlayer != null)
         {
-            characterPlayer.TakeDamage(damage);
+            characterPlayer.TakeDamage(Damage);
             Destroy(gameObject);
         }        
     }
