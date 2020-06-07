@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    public float Speed;
-    public Vector2 Dir;
-    public int Damage;
-
+    protected float Speed;
+    protected Vector2 Dir;
     //Fix for any time
     protected virtual void FixedUpdate()
     {

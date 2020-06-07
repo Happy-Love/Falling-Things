@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Common : Base
 {
     public float DeleteTime;
-    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private float damage;
     void Start()
     {
         Destroy(gameObject, DeleteTime);
@@ -17,7 +17,7 @@ public class Common : Base
         Character characterPlayer = collision.GetComponent<Character>();
         if (characterPlayer != null)
         {
-            characterPlayer.TakeDamage(Damage);
+            characterPlayer.TakeDamage(damage);
             Destroy(gameObject);
         }        
     }

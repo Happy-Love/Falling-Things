@@ -16,7 +16,7 @@ public class Bomb : Base
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask playerMask;
 
-
+    [SerializeField] private float damage;
     void Start()
     {
         countdown = delay;
@@ -28,7 +28,7 @@ public class Bomb : Base
         {
             Vector2 direction = item.transform.position - transform.position;
             item.GetComponent<Rigidbody2D>().AddForce(direction * force);
-            item.GetComponent<Character>().TakeDamage(Damage);
+            item.GetComponent<Character>().TakeDamage(damage);
         }
         GameObject explos = Instantiate(Explosion, transform.position, transform.rotation);
         Destroy(explos, .5f);

@@ -17,8 +17,6 @@ public class Character : MonoBehaviour
 	public float health = 10f;
 
 	float horizontalMove = 0f;
-	bool jump = false;
-
 	private Material matWhite;
 	private Material matDefault;
 	private SpriteRenderer sr;
@@ -52,8 +50,10 @@ public class Character : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			jump = true;
-			animator.SetBool("IsJumping", true);
+			if (Controller.IsGrounded)
+			{
+				Controller.Jump();
+			}
 		}
 
 
@@ -63,8 +63,11 @@ public class Character : MonoBehaviour
 	void FixedUpdate()
 	{
 		// Move our character
-		Controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
-		jump = false;
+		Controller.Move(horizontalMove * Time.fixedDeltaTime);
+		animator.SetBool("Jumping", !Controller.IsGrounded);
+
+	
+		
 	}
 	
 
@@ -79,9 +82,9 @@ public class Character : MonoBehaviour
 	}
 	public void OnLanding()
 	{
-		animator.SetBool("IsJumping", false);
+		//animator.SetBool("Jumping", false);
 	}
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		health -= damage;
 		sr.material = matWhite;
@@ -93,6 +96,10 @@ public class Character : MonoBehaviour
 		{
 			Invoke("ResetMaterial", .3f);
 		}
+	}
+	public void TakeHeal(float heal)
+	{
+		health += heal;
 	}
 	void ResetMaterial() {
 		sr.material = matDefault;

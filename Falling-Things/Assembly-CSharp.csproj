@@ -67,7 +67,9 @@
     <Compile Include="Assets\MapMenu.cs" />
     <Compile Include="Assets\Scripts\Box\Base.cs" />
     <Compile Include="Assets\Scripts\Box\Bomb.cs" />
+    <Compile Include="Assets\Scripts\Box\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\Box\Common.cs" />
+    <Compile Include="Assets\Scripts\Box\Health.cs" />
     <Compile Include="Assets\Scripts\Box\Spawner.cs" />
     <Compile Include="Assets\Scripts\Player\Character.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />

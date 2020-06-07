@@ -544,7 +544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327093518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0373, y: -1.3, z: 0}
+  m_LocalPosition: {x: -0.0373, y: -1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 483804788}
@@ -729,10 +729,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be3abbedc5557e478040ef351fd4b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 483804785}
+  Controller: {fileID: 483804785}
   animator: {fileID: 483804783}
   runSpeed: 40
   health: 10
+  MainCamera: {fileID: 725999895}
 --- !u!114 &483804785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,8 +754,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_GroundCheck: {fileID: 327093519}
-  m_CeilingCheck: {fileID: 1925393737}
-  m_CrouchDisableCollider: {fileID: 483804782}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -769,9 +768,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!50 &483804786
 Rigidbody2D:
   serializedVersion: 4

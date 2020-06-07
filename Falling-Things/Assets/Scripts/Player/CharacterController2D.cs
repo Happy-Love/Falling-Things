@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 	// Start is called before the first frame update
-	[SerializeField] private float m_JumpForce = 1500f;                          // Amount of force added when the player jumps.
+	[SerializeField] private float m_JumpForce = 15000f;                          // Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	public bool IsGrounded { get => m_Grounded; }
 	[Header("Events")]
 	[Space]
 	public UnityEvent OnLandEvent;
@@ -26,6 +27,7 @@ public class CharacterController2D : MonoBehaviour
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 	}
+	 
 
 	private void FixedUpdate()
 	{
@@ -41,13 +43,15 @@ public class CharacterController2D : MonoBehaviour
 			{
 				m_Grounded = true;
 				if (!wasGrounded)
+				{
 					OnLandEvent.Invoke();
+				}
 			}
 		}
 	}
 
 
-	public void Move(float move, bool jump)
+	public void Move(float move)
 	{
 		 
 		//only control the player if grounded or airControl is turned on
@@ -73,16 +77,19 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
+		
 		// If the player should jump...
-		if (m_Grounded && jump)
+		
+	}
+	public void Jump() {
+		if (m_Grounded)
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce),ForceMode2D.Impulse); // doesn't work
-			//m_Rigidbody2D.velocity+=(new Vector2(0f, m_JumpForce));
+
+			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse); // doesn't work
 		}
 	}
-
 
 	private void Flip()
 	{
