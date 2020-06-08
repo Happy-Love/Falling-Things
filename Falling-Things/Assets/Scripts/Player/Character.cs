@@ -14,7 +14,14 @@ public class Character : MonoBehaviour
 	public Animator animator;
 	public float runSpeed = 40f;
 
-	public float health = 10f;
+	//Stats
+
+	[SerializeField] private float maxHealth = 100f;
+	[SerializeField] private float health = 0f;
+	public HealthBar healthBar;
+
+	[SerializeField] private int coins = 0;
+	 
 
 	float horizontalMove = 0f;
 	private Material matWhite;
@@ -36,6 +43,8 @@ public class Character : MonoBehaviour
 	}
 	void Start()
 	{
+		health = maxHealth;
+		healthBar.SetMaxHealth(maxHealth);
 		objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
 		objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; //extents = size of height / 2
 	}
@@ -52,7 +61,7 @@ public class Character : MonoBehaviour
 		{
 			if (Controller.IsGrounded)
 			{
-				Controller.Jump();
+				Controller.Jump2();
 			}
 		}
 
@@ -87,6 +96,8 @@ public class Character : MonoBehaviour
 	public void TakeDamage(float damage)
 	{
 		health -= damage;
+		healthBar.SetHealth(health);
+
 		sr.material = matWhite;
 		if (health <= 0)
 		{
