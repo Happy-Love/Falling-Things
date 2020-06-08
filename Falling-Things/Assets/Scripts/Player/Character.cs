@@ -13,13 +13,13 @@ public class Character : MonoBehaviour
 	//Animator animator;
 	public Animator animator;
 	public float runSpeed = 40f;
+	public HealthBar healthBar;
 
 	//Stats
 
 	[SerializeField] private float maxHealth = 100f;
 	[SerializeField] private float health = 0f;
-	public HealthBar healthBar;
-
+	
 	[SerializeField] private int coins = 0;
 	 
 
@@ -111,6 +111,7 @@ public class Character : MonoBehaviour
 	public void TakeHeal(float heal)
 	{
 		health += heal;
+		healthBar.SetHealth(health);
 	}
 	void ResetMaterial() {
 		sr.material = matDefault;
