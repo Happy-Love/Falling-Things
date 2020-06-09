@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class BackMenu : MonoBehaviour
 {
     // menu
-    private static bool gameIsPaused = false;
+    
 
-    public GameObject pauseMenuUI;
+    public GameObject PauseMenuUI;
+    
+    
+    private static bool gameIsPaused = false;
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -22,12 +25,12 @@ public class BackMenu : MonoBehaviour
         }
     }
     public void Resume() {
-        pauseMenuUI.SetActive(false);
+        PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
     public void Pause() {
-        pauseMenuUI.SetActive(true);
+        PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
@@ -36,5 +39,7 @@ public class BackMenu : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
     }
+    // Расширение для другого меню
+   
 
 }

@@ -16,12 +16,12 @@ public class Character : MonoBehaviour
 	public HealthBar healthBar;
 
 	//Stats
-
+	public Score scores;
 	[SerializeField] private float maxHealth = 100f;
 	[SerializeField] private float health = 0f;
 	
 	[SerializeField] private int coins = 0;
-	 
+	private float time=0f;
 
 	float horizontalMove = 0f;
 	private Material matWhite;
@@ -34,6 +34,8 @@ public class Character : MonoBehaviour
 	private float objectWidth;
 	private float objectHeight;
 	// Update is called once per frame
+
+ 
 	void Awake() {
 		animator = GetComponent<Animator>();
 		sr = GetComponent<SpriteRenderer>();
@@ -52,11 +54,8 @@ public class Character : MonoBehaviour
 	void Update()
 	{
 		
-
 		horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
-
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			if (Controller.IsGrounded)
@@ -64,7 +63,7 @@ public class Character : MonoBehaviour
 				Controller.Jump2();
 			}
 		}
-
+		
 
 
 	}
@@ -74,7 +73,7 @@ public class Character : MonoBehaviour
 		// Move our character
 		Controller.Move(horizontalMove * Time.fixedDeltaTime);
 		animator.SetBool("Jumping", !Controller.IsGrounded);
-
+		time += Time.fixedDeltaTime;
 	
 		
 	}
@@ -110,7 +109,10 @@ public class Character : MonoBehaviour
 	}
 	public void TakeHeal(float heal)
 	{
-		health += heal;
+		if ( health + heal > maxHealth)
+			health = maxHealth;
+		else
+			health += heal;
 		healthBar.SetHealth(health);
 	}
 	void ResetMaterial() {
@@ -119,6 +121,8 @@ public class Character : MonoBehaviour
 	void OnDie()
 	{
 		Destroy(gameObject);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+		scores.SetScores(coins, time);
+		FindObjectOfType<DieMenu>().EndGame();
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
 	}
 }

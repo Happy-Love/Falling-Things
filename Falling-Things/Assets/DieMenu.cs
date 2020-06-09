@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DieMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject DieMenuUI;
+    public void Restart()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void LoadMenu()
     {
-        
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+    }
+    public void EndGame() {
+        Time.timeScale = 0f;
+        DieMenuUI.SetActive(true);
     }
 }
