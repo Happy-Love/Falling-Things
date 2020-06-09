@@ -19,6 +19,7 @@ public class Bomb : Base
     [SerializeField] private float damage;
     void Start()
     {
+        Destroy(gameObject, 10f);
         countdown = delay;
     }
     void Explode()

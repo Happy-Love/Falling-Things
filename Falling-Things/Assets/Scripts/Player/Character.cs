@@ -7,9 +7,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController2D))]
+ 
 public class Character : MonoBehaviour
 {
 	public CharacterController2D Controller;
+	
 	//Animator animator;
 	public Animator animator;
 	public float runSpeed = 40f;
@@ -20,7 +22,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private float maxHealth = 100f;
 	[SerializeField] private float health = 0f;
 	
-	[SerializeField] private int coins = 0;
+	public int coins = 0;
 	private float time=0f;
 
 	float horizontalMove = 0f;
@@ -33,10 +35,13 @@ public class Character : MonoBehaviour
 	private Vector2 screenBounds;
 	private float objectWidth;
 	private float objectHeight;
-	// Update is called once per frame
+	//public SaveManager<Character> save;
 
- 
+	// Update is called once per frame
+	DataManager dataManager;
 	void Awake() {
+		dataManager = GetComponent<DataManager>();
+		
 		animator = GetComponent<Animator>();
 		sr = GetComponent<SpriteRenderer>();
 		// replace on drag&&drap technology
@@ -45,6 +50,8 @@ public class Character : MonoBehaviour
 	}
 	void Start()
 	{
+		dataManager.Load();
+		//save.LoadFromJsonCharacter(this);
 		health = maxHealth;
 		healthBar.SetMaxHealth(maxHealth);
 		objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
@@ -115,13 +122,19 @@ public class Character : MonoBehaviour
 			health += heal;
 		healthBar.SetHealth(health);
 	}
+
+	public void TakeCoins(int coins) {
+		this.coins += coins;
+	}
 	void ResetMaterial() {
 		sr.material = matDefault;
 	}
 	void OnDie()
 	{
+		dataManager.Save();
 		Destroy(gameObject);
 		scores.SetScores(coins, time);
+		//save.SaveToJsonCharacter(this);
 		FindObjectOfType<DieMenu>().EndGame();
 		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
 	}

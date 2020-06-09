@@ -69,13 +69,16 @@
     <Compile Include="Assets\MapMenu.cs" />
     <Compile Include="Assets\Scripts\Box\Base.cs" />
     <Compile Include="Assets\Scripts\Box\Bomb.cs" />
+    <Compile Include="Assets\Scripts\Box\Coin.cs" />
     <Compile Include="Assets\Scripts\Box\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\Box\Common.cs" />
     <Compile Include="Assets\Scripts\Box\Health.cs" />
     <Compile Include="Assets\Scripts\Box\Spawner.cs" />
     <Compile Include="Assets\Scripts\Player\Character.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Player\DataManager.cs" />
     <Compile Include="Assets\Scripts\Player\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Player\IDataPersistance.cs" />
     <Compile Include="Assets\Scripts\Player\Score.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

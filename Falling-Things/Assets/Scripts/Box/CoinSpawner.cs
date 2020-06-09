@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class CoinSpawner : Spawner
 {
-    [SerializeField] private Character character;
+    //[SerializeField] private Character character;
       
     private void Awake() {
-        character = GetComponent<Character>();   
+        //character = GetComponent<Character>();   
     }
     protected override void Spawn()
     {
-        
-        spawnPos.position = new Vector3(Random.Range(screenBounds.x * -1, screenBounds.x), Random.Range(1f,2f));
+       
+        spawnPos.position = new Vector3(Random.Range(screenBounds.x * -1, screenBounds.x), Random.Range(1.2f,4f));
+        DropLoot();
     }
 
 }

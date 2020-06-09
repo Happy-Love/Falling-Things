@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
 	public void SetScores(int coins,float time)
 	{
 		coinScore.text = coins.ToString();
-		timeScore.text = (time-time%0.01).ToString().Replace(',',':'); // Rounding to the nearest hundredth
+		timeScore.text = Mathf.Round(time).ToString()+" seconds"; // Rounding to the nearest hundredth
 	}
 
 	

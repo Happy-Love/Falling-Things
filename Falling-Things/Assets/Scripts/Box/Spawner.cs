@@ -6,7 +6,15 @@ public class Spawner : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] protected Transform spawnPos;
-    [SerializeField] private GameObject[] objects;
+    [System.Serializable]
+    public class Loot {
+        public string Name;
+        public GameObject item;
+        public int dropRarity;
+    }
+    public List<Loot> LootTable=new List<Loot>();
+    private int DropChance;
+
     [SerializeField] private float timeSpawn;
     
     // Camera Settings
@@ -23,12 +31,44 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(timeSpawn);
             screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
             Spawn();
-            Instantiate(objects[Random.Range(0, objects.Length)], spawnPos.position, Quaternion.identity);
+            
         }
     }
     // 
     protected virtual void Spawn()
     {
         spawnPos.position = new Vector3(Random.Range(screenBounds.x * -1, screenBounds.x), spawnPos.position.y);
+        DropLoot();
+    }
+    public  void DropLoot()
+    {
+        DropChance = Random.Range(0, 101);
+        int calc_DropChance = Random.Range(0, 101);
+        if (calc_DropChance > DropChance)
+        {
+          
+            return;
+        }
+        if (calc_DropChance <= DropChance)
+        {
+            int itemWeight = 0;
+            for (int i = 0; i < LootTable.Count; i++)
+            {
+                itemWeight += LootTable[i].dropRarity;
+            }
+            
+
+            int randomValue = Random.Range(0, itemWeight);
+            for (int j = 0; j < LootTable.Count; j++)
+            {
+                if (randomValue <= LootTable[j].dropRarity)
+                {
+                    Instantiate(LootTable[j].item, spawnPos.position, Quaternion.identity);
+                    return;
+                }
+                randomValue -= LootTable[j].dropRarity;
+             
+            }
+        }
     }
 }
