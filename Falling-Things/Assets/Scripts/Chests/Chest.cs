@@ -23,6 +23,7 @@ public class Chest : Base
             {
                 character.TakeCoins(coins);
             }
+            SetSpeed(0);
             Destroy(gameObject,2f);
         }
         else {

@@ -11,4 +11,8 @@ public class Base : MonoBehaviour
     {
         transform.Translate(Speed * Dir * Time.fixedDeltaTime, Space.World);
     }
+    public void SetSpeed(float speed)
+    {
+        Speed = speed;
+    }
 }
