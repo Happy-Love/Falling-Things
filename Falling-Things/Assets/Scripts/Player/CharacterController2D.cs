@@ -90,27 +90,25 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Jump2() {
 		if (m_Grounded)
-		{  //m_Rigidbody2D.velocity = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.transform.position.y * jumpHeight);
+		{  
+			
 			float g = m_Rigidbody2D.gravityScale * Physics2D.gravity.magnitude;
-			//float a = m_JumpForce / m_Rigidbody2D.mass;		 
-			
-			
+			//m_Rigidbody2D.velocity = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.transform.position.y * jumpHeight);
+			//float a = m_JumpForce / m_Rigidbody2D.mass;	
+			//float jump_y = max_jump_y - (max_jump_y * myDrag * Time.fixedDeltaTime);
+			//print("Max jump y"+max_jump_y);
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
-			float myDrag = m_Rigidbody2D.drag;
-
-			float max_jump_y = m_Rigidbody2D.velocity.y * m_Rigidbody2D.velocity.y / (2 * g);
-			float jump_y = max_jump_y - (max_jump_y * myDrag * Time.fixedDeltaTime);
-			print(jump_y);
-			//print("Max jump y"+max_jump_y);
-		}
-		
+			float max_jump_y = (m_Rigidbody2D.velocity.y * m_Rigidbody2D.velocity.y) / (2 * g);
+			
+			print(max_jump_y);
+			
+		}		
 	}
 	public void Jump() {
 		if (m_Grounded)
 		{
 			// Add a vertical force to the player.
-
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse); // doesn't work
 			

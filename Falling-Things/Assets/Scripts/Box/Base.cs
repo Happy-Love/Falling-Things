@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    protected float Speed;
-    protected Vector2 Dir;
+    [SerializeField] protected float Speed;
+    [SerializeField] protected Vector2 Dir;
     //Fix for any time
     protected virtual void FixedUpdate()
     {

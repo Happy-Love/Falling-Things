@@ -143,8 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7568fdee330757744887b768069e024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
+  Dir: {x: 0, y: 0}
   DeleteTime: 10
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
   damage: 2

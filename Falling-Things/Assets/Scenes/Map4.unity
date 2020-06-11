@@ -647,7 +647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434440497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0373, y: -1.3, z: 0}
+  m_LocalPosition: {x: -0.0373, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 894138444}
@@ -698,7 +698,7 @@ PrefabInstance:
     - target: {fileID: 3795789853204918636, guid: 8943d73cc20b21144b22a636df0b2651,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3795789853204918636, guid: 8943d73cc20b21144b22a636df0b2651,
         type: 3}
@@ -728,7 +728,7 @@ PrefabInstance:
     - target: {fileID: 3795789853204918637, guid: 8943d73cc20b21144b22a636df0b2651,
         type: 3}
       propertyPath: LootTable.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3795789853204918637, guid: 8943d73cc20b21144b22a636df0b2651,
         type: 3}
@@ -877,6 +877,22 @@ PrefabInstance:
         type: 3}
       propertyPath: LootTable.Array.data[2].dropRarity
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795789853204918637, guid: 8943d73cc20b21144b22a636df0b2651,
+        type: 3}
+      propertyPath: LootTable.Array.data[3].Name
+      value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795789853204918637, guid: 8943d73cc20b21144b22a636df0b2651,
+        type: 3}
+      propertyPath: LootTable.Array.data[3].item
+      value: 
+      objectReference: {fileID: 1071046508561628078, guid: 2bda5c3492c9bc54e895d9b78ebf3275,
+        type: 3}
+    - target: {fileID: 3795789853204918637, guid: 8943d73cc20b21144b22a636df0b2651,
+        type: 3}
+      propertyPath: LootTable.Array.data[3].dropRarity
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3795789853204918642, guid: 8943d73cc20b21144b22a636df0b2651,
         type: 3}
@@ -1287,7 +1303,7 @@ MonoBehaviour:
   runSpeed: 40
   healthBar: {fileID: 1696332040}
   scores: {fileID: 1706609192}
-  maxHealth: 100
+  maxHealth: 555
   health: 0
   coins: 5
   MainCamera: {fileID: 604038080}
@@ -1303,10 +1319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1f82c43f5cbac468135b09cd48ce09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 10
-  jumpCutHeight: 5
+  jumpHeight: 0
+  jumpCutHeight: 0
   m_JumpForce: 500
-  m_CrouchSpeed: 0.36
+  m_CrouchSpeed: 0
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
@@ -1407,8 +1423,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894138437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children:
   - {fileID: 1248548716}
   - {fileID: 434440498}
@@ -6725,7 +6741,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &1248548715
 GameObject:
@@ -7100,6 +7116,7 @@ MonoBehaviour:
     item: {fileID: 1895098473720481436, guid: bfcd6c02cabcf8b4b80e2b1c6e6ff208, type: 3}
     dropRarity: 1
   timeSpawn: 1
+  character: {fileID: 0}
 --- !u!4 &1671248723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3795789853204918636, guid: 8943d73cc20b21144b22a636df0b2651,

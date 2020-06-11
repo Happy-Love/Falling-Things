@@ -70,9 +70,6 @@ public class Character : MonoBehaviour
 				Controller.Jump2();
 			}
 		}
-		
-
-
 	}
 
 	void FixedUpdate()
@@ -80,9 +77,7 @@ public class Character : MonoBehaviour
 		// Move our character
 		Controller.Move(horizontalMove * Time.fixedDeltaTime);
 		animator.SetBool("Jumping", !Controller.IsGrounded);
-		time += Time.fixedDeltaTime;
-	
-		
+		time += Time.fixedDeltaTime;	
 	}
 	
 
